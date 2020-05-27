@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+{% block headers %}
+  {{ super() }}
+  <script defer src="{{ url_for('static', filename='js/copy_function.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+  <div class="columns is-centered is-vcentered">
+    <div class="column is-half">
+      {% if not error %}
+        <section class="hero">
+          <div class="hero-body">
+            <div class="container">
+              <div class="card">
+                <div class="card-content">
+                  <div class="content">
+                    {% if gitea_user is none %}
+                      <p class="subtitle has-text-centered">
+                        {% trans %}Connect your account to Gitea{% endtrans %}
+                      </p>
+                      <form method="POST" action="{{ url_for('settings.gitea_connect') }}">
+                        <div class="field">
+                          <label class="label">{% trans %}Token{% endtrans %}</label>
+                          <div class="control has-icons-left">
+                            <input class="input" type="text" name="gitea_token" placeholder="{% trans %}Token{% endtrans %}" required>
+                            <span class="icon is-small is-left">
+                              <i class="fas fa-key"></i>
+                            </span>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <div class="control has-text-centered">
+                            <button type="submit" class="button is-info">
+                              <span class="icon is-small">
+                                <i class="fas fa-check"></i>
+                              </span>
+                              <span>{% trans %}Connect{% endtrans %}</span>
+                            </button>
+                          </div>
+                        </div>
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                      </form>
+                    {% else %}
+                      <article class="media">
+                        <figure class="media-left">
+                          <p class="image is-128x128">
+                            <img src="{{ gitea_user.avatar_url }}">
+                          </p>
+                        </figure>
+                        <div class="media-content">
+                          <div class="content">
+                            <p class="subtitle has-text-centered">{{ gitea_user.login }}</p>
+                            <p class="subtitle is-6 has-text-centered">
+                              {% trans %}Gitea Admin{% endtrans %} :
+                              {% if gitea_user.is_admin %}
+                                {% trans %}Yes{% endtrans %}
+                              {% else %}
+                                {% trans %}No{% endtrans %}
+                              {% endif %}
+                            </p>
+                          </div>
+                        </div>
+                      </article>
+                      <form method="POST" action="{{ url_for('settings.gitea_disconnect') }}">
+                        <div class="field">
+                          <div class="control has-text-centered">
+                            <button type="submit" class="button is-danger">
+                            <span class="icon is-small">
+                              <i class="fas fa-times"></i>
+                            </span>
+                              <span>{% trans %}Disconnect{% endtrans %}</span>
+                            </button>
+                          </div>
+                        </div>
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                      </form>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      {% else %}
+        <form method="POST" action="{{ url_for('settings.gitea_disconnect') }}">
+          <div class="field">
+            <div class="control has-text-centered">
+              <button type="submit" class="button is-danger">
+              <span class="icon is-small">
+                <i class="fas fa-times"></i>
+              </span>
+                <span>{% trans %}Disconnect{% endtrans %}</span>
+              </button>
+            </div>
+          </div>
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        </form>
+      {% endif %}
+      <section class="hero">
+        <div class="hero-body">
+          <div class="container">
+            <div class="card">
+              <div class="card-content">
+                <div class="content">
+                  <p class="subtitle has-text-centered">
+                    {% trans %}Gitea configuration{% endtrans %}
+                  </p>
+                  <form method="POST" action="{{ url_for('settings.gitea_repository') }}">
+                    <div class="field">
+                      <label class="label">{% trans %}Gitea URL{% endtrans %}</label>
+                      <div class="control has-icons-left">
+                        <input class="input" type="text" name="gitea_url" placeholder="{% trans %}Gitea URL{% endtrans %}" value="{{ gitea.url }}" required>
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-globe"></i>
+                          </span>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label class="label">{% trans %}Owner of the repository{% endtrans %}</label>
+                      <div class="control has-icons-left">
+                        <input class="input" type="text" name="gitea_owner" placeholder="{% trans %}Owner of the repository{% endtrans %}" value="{{ gitea.owner }}" required>
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-user"></i>
+                          </span>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label class="label">{% trans %}Name of the repository{% endtrans %}</label>
+                      <div class="control has-icons-left">
+                        <input class="input" type="text" name="gitea_repository" placeholder="{% trans %}Name of the repository{% endtrans %}" value="{{ gitea.repository }}" required>
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-folder"></i>
+                          </span>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <div class="control has-text-centered">
+                        <button type="submit" class="button is-info">
+                            <span class="icon is-small">
+                              <i class="fas fa-check"></i>
+                            </span>
+                          <span>{% trans %}Submit{% endtrans %}</span>
+                        </button>
+                      </div>
+                    </div>
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="hero">
+        <div class="hero-body">
+          <div class="container">
+            <div class="card">
+              <div class="card-content">
+                <div class="content">
+                  <p class="subtitle has-text-centered">
+                    {% trans %}API key{% endtrans %}
+                  </p>
+                  <div class="field is-grouped is-grouped-centered">
+                    <div class="control">
+                      <form method="POST" action="{{ url_for('settings.create_api_key') }}">
+                        <button type="submit" class="button is-info">
+                          <span class="icon is-small">
+                            <i class="fas fa-check"></i>
+                          </span>
+                          <span>{% trans %}Generate new API key{% endtrans %}</span>
+                        </button>
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                      </form>
+                    </div>
+                    {% if api_key is not none %}
+                      <div class="control">
+                        <button id="copy_api_key" type="button" class="button is-link">
+                          <span class="icon is-small">
+                              <i class="fas fa-copy"></i>
+                          </span>
+                          <span>{% trans %}Copy API key{% endtrans %}</span>
+                        </button>
+                      </div>
+                      <input id="api_key" type="hidden" class="input" value="{{ api_key }}">
+                      <div class="control">
+                        <form method="POST" action="{{ url_for('settings.delete_api_key') }}">
+                          <button type="submit" class="button is-danger">
+                            <span class="icon is-small">
+                              <i class="fas fa-times"></i>
+                            </span>
+                            <span>{% trans %}Delete API key{% endtrans %}</span>
+                          </button>
+                          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                        </form>
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+{% endblock %}

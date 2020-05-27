@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="columns is-centered is-vcentered">
+  <div class="column is-half">
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container">
+          <div class="card">
+            <div class="card-content">
+              <div class="content">
+                <p class="title has-text-centered">
+                  {% trans %}Save/Restore{% endtrans %}
+                </p>
+                <form method="post">
+                  <div class="field has-addons has-addons-centered">
+                    <p class="control">
+                      <input class="input" type="text" name="hostname" placeholder="{% trans %}Hostname / IP address{% endtrans %}">
+                    </p>
+                    <p class="control">
+                      <input class="input" type="text" name="module" placeholder="{% trans %}Module{% endtrans %}">
+                    </p>
+                    <p class="control">
+                      <span class="select">
+                        <select name="action">
+                          <option value="save">{% trans %}Save{% endtrans %}</option>
+                          <option value="restore">{% trans %}Restore{% endtrans %}</option>
+                        </select>
+                      </span>
+                    </p>
+                    <p class="control">
+                      <input class="input" type="text" name="path" placeholder="{% trans %}Path of file{% endtrans %}">
+                    </p>
+                    <p class="control">
+                      <button type="submit" class="button is-info">{% trans %}Submit{% endtrans %}</button>
+                    </p>
+                  </div>
+                  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+{% endblock %}

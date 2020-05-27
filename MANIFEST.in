@@ -1,0 +1,8 @@
+include LICENSE
+include LICENSE.fr
+include website/schema.sql
+graft website/static
+graft website/templates
+graft website/translations
+graft tests
+global-exclude *.pyc

@@ -1,0 +1,16 @@
+DEBUG        = False          # Flask Debug mode
+TESTING      = False          # Flask Testing mode
+SECRET_KEY   = b''            # Flask Secret Key
+TIMEZONE     = 'Europe/Paris' # Flask timezone used to display date
+#SERVER_NAME = None           # Flask server name
+
+RABBITMQ_HOST     = ''          # RabbitMQ hostname or IP
+RABBITMQ_PORT     = 5672        # RabbitMQ port
+RABBITMQ_QUEUE    = 'tasks'     # RabbitMQ queue
+RABBITMQ_LOGIN    = ''          # RabbitMQ login
+RABBITMQ_PASSWORD = ''          # RabbitMQ password
+
+API_ENABLE             = False            # Enable/Disable API
+API_CORS_ALLOW_ORIGINS = ["localhost"]    # List of allowed CORS origins
+
+#SENTRY_DSN = '' # Sentry DSN

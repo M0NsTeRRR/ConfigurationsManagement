@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block headers %}
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>ConfigurationsManagement</title>
+            <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/bulma.min.css') }}">
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/bulma-steps.min.css') }}">
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+            <script defer src="{{ url_for('static', filename='js/fontawesome.min.js') }}"></script>
+            <script defer src="{{ url_for('static', filename='js/bulma.js') }}"></script>
+        {% endblock %}
+    </head>
+    <body>
+        <div class="page-wrap">
+            <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+              <div class="navbar-brand">
+                <span class="navbar-item">
+                  ConfigurationsManagement
+                </span>
+                <a role="button" class="navbar-burger burger" data-target="navMenu">
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                </a>
+              </div>
+
+              <div id="navMenu" class="navbar-menu">
+              {% if isLogged %}
+                <div class="navbar-start">
+                  {% if config['API_ENABLE'] %}
+                    <a class="navbar-item {% if request.path.startswith(url_for('flasgger.apidocs')) %}is-active{% endif %}" href="{{ url_for('flasgger.apidocs') }}">
+                      <span class="icon">
+                        <i class="fas fa-info-circle" aria-hidden="true"></i>
+                      </span>
+                      <span>{% trans %}API Documentation{% endtrans %}</span>
+                    </a>
+                  {% endif %}
+                  <a class="navbar-item {% if request.path.startswith(url_for('configuration_files.index')) %}is-active{% endif %}" href="{{ url_for('configuration_files.index') }}">
+                    <span class="icon">
+                      <i class="fas fa-file-code" aria-hidden="true"></i>
+                    </span>
+                    <span>{% trans %}Configuration files{% endtrans %}</span>
+                  </a>
+                  <a class="navbar-item {% if request.path.startswith(url_for('tasks.index')) and request.path != url_for('tasks.tasks') %}is-active{% endif %}" href="{{ url_for('tasks.index') }}">
+                    <span class="icon">
+                      <i class="fas fa-save" aria-hidden="true"></i>
+                    </span>
+                    <span>{% trans %}Save/Restore{% endtrans %}</span>
+                  </a>
+                  <a class="navbar-item {% if request.path.startswith(url_for('tasks.tasks')) %}is-active{% endif %}" href="{{ url_for('tasks.tasks') }}">
+                    <span class="icon">
+                      <i class="fas fa-file-alt" aria-hidden="true"></i>
+                    </span>
+                    <span>{% trans %}Tasks{% endtrans %}</span>
+                  </a>
+                  <a class="navbar-item {% if request.path.startswith(url_for('settings.index')) %}is-active{% endif %}" href="{{ url_for('settings.index') }}">
+                    <span class="icon">
+                      <i class="fas fa-cogs" aria-hidden="true"></i>
+                    </span>
+                    <span>{% trans %}Settings{% endtrans %}</span>
+                  </a>
+                  <a class="navbar-item {% if request.path.startswith(url_for('admin.index')) %}is-active{% endif %}" href="{{ url_for('admin.index') }}">
+                    <span class="icon">
+                      <i class="fas fa-user-shield" aria-hidden="true"></i>
+                    </span>
+                    <span>{% trans %}Administration{% endtrans %}</span>
+                  </a>
+                </div>
+                <div class="navbar-end">
+                  <a class="navbar-item" href="{{ url_for('auth.logout') }}">
+                    <span class="icon">
+                      <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+                    </span>
+                    <span>{% trans %}Logout{% endtrans %}</span>
+                  </a>
+                </div>
+              {% endif %}
+              </div>
+            </nav>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <section class="hero">
+                          <div class="hero-body">
+                            <div class="container">
+                              <article class="container message {{ 'is-success' if category == 'success' else 'is-danger' }}">
+                                <div class="message-header">
+                                  <p>
+                                      {% if category == 'success' %}
+                                          {% trans %}Success{% endtrans %} !
+                                      {% else %}
+                                          {% trans %}Failed{% endtrans %} !
+                                      {% endif %}
+                                  </p>
+                                </div>
+                                <div class="message-body">
+                                  {{ message }}
+                                </div>
+                              </article>
+                            </div>
+                          </div>
+                        </section>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            {% block content %}
+            {% endblock %}
+        </div>
+        {% block footer %}
+            <footer class="footer site-footer has-background-dark has-text-white">
+                <div class="content has-text-centered">
+                    <p>
+                        ConfigurationsManagement {% trans %}is published under license{% endtrans %} <strong class="has-text-white">CeCILL v2.1</strong><a href="https://github.com/M0NsTeRRR/ConfigurationsManagement" target="blank"><span class="icon has-text-white"><i class="fab fa-github"></i></span></a><br>
+                        Copyright © <strong class="has-text-white">Ludovic Ortega</strong> 2020
+                    </p>
+                </div>
+            </footer>
+        {% endblock %}
+    </body>
+</html>

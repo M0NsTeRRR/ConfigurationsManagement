@@ -1,0 +1,35 @@
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS gitea;
+DROP TABLE IF EXISTS log;
+
+CREATE TABLE user (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  login TEXT UNIQUE NOT NULL,
+  password TEXT NOT NULL,
+  gitea_token TEXT NULL,
+  api_key TEXT NULL
+);
+
+CREATE TABLE gitea (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  url TEXT NULL,
+  owner TEXT NULL,
+  repository TEXT NULL
+);
+
+CREATE TABLE task (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  hostname TEXT NOT NULL,
+  module TEXT NOT NULL,
+  action TEXT NOT NULL,
+  path TEXT NOT NULL,
+  state INTEGER NOT NULL DEFAULT 0,
+  error INTEGER NOT NULL DEFAULT 0,
+  message TEXT NULL,
+  start_date TIMESTAMP NOT NULL,
+  end_date TIMESTAMP NULL
+);
+
+INSERT INTO gitea (url, owner, repository)
+VALUES
+  ('', '', '');

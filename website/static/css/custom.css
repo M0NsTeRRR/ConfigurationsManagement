@@ -1,0 +1,50 @@
+/* Roboto regular */
+
+@font-face {
+    font-family: 'Roboto';
+    src: url("/static/font/Roboto-Regular.ttf") format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Roboto italic */
+
+@font-face {
+    font-family: 'Roboto';
+    src: url("/static/font/Roboto-Italic.ttf") format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+/* Roboto bold */
+
+@font-face {
+    font-family: 'Roboto';
+    src: url("/static/font/Roboto-Bold.ttf") format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+}
+html, body {
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.page-wrap {
+    min-height: 100%;
+    margin-bottom: -155px;
+}
+.page-wrap:after {
+    content: "";
+    display: block;
+}
+.site-footer, .page-wrap:after {
+    height: 155px;
+}
+.text-align-icon{
+    vertical-align:middle;
+}

@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="columns is-centered is-vcentered">
+  <div class="column is-half">
+    {% if tasks %}
+      <section class="hero">
+        <div class="hero-body">
+          <div class="container">
+            <div class="card">
+              <div class="card-content">
+                <div class="content">
+                  <p class="title has-text-centered">
+                    {% trans %}tasks{% endtrans %}
+                  </p>
+                  <table class="table is-bordered is-hoverable is-fullwidth">
+                    <thead>
+                      <tr>
+                        <th class="has-text-centered">{% trans %}ID{% endtrans %}</th>
+                        <th class="has-text-centered">{% trans %}Hostname{% endtrans %}</th>
+                        <th class="has-text-centered">{% trans %}Module{% endtrans %}</th>
+                        <th class="has-text-centered">{% trans %}Action{% endtrans %}</th>
+                        <th class="has-text-centered">{% trans %}Status{% endtrans %}</th>
+                        <th class="has-text-centered">{% trans %}Start date{% endtrans %}</th>
+                        <th class="has-text-centered">{% trans %}End date{% endtrans %}</th>
+                        <th class="has-text-centered">{% trans %}View{% endtrans %}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for task in tasks %}
+                      {% if task.state == 1 %}
+                        {% set status_color = 'is-link' %}
+                        {% set status_name = 'Created' %}
+                      {% elif task.state == 2 %}
+                        {% set status_color = 'is-link' %}
+                        {% set status_name = 'Popped' %}
+                      {% elif task.state == 3 %}
+                        {% set status_color = 'is-warning' %}
+                        {% set status_name = 'Processing' %}
+                      {% else %}
+                        {% set status_color = 'is-success' %}
+                        {% set status_name = 'Finished' %}
+                      {% endif %}
+                      {% if task.error == 1 %}
+                        {% set status_color = 'is-danger' %}
+                        {% set status_name = 'Error' %}
+                      {% endif %}
+                      <tr>
+                        <td class="has-text-centered">{{ task.id }}</td>
+                        <td class="has-text-centered">{{ task.hostname }}</td>
+                        <td class="has-text-centered">{{ task.module }}</td>
+                        <td class="has-text-centered">{{ task.action }}</td>
+                        <td class="has-text-centered">
+                          <span class="tag {{ status_color }}">
+                            {% trans %}{{ status_name }}{% endtrans %}
+                          </span>
+                        </td>
+                        <td class="has-text-centered">{{ task.start_date|datetime }}</td>
+                        <td class="has-text-centered">{% if task.end_date is not none %}{{ task.end_date|datetime }}{% else %}{% trans %}Unknown{% endtrans %}{% endif %}</td>
+                        <td class="has-text-centered">
+                          <a href="{{ url_for('tasks.task', id=task.id) }}" class="button is-small is-info">
+                            <span class="icon is-small">
+                              <i class="fas fa-eye"></i>
+                            </span>
+                            <span>{% trans %}Go{% endtrans %}</span>
+                          </a>
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+                <ul class="pagination-list">
+                  {% if page > 2 %}
+                    <li><a class="pagination-link" href="?page=1">1</a></li>
+                    <li><span class="pagination-ellipsis">&hellip;</span></li>
+                  {% endif %}
+                  {% if page > 1 %}
+                    <li><a class="pagination-link" href="?page={{ page - 1 }}">{{ page - 1 }}</a></li>
+                  {% endif %}
+                  <li><a class="pagination-link is-current" aria-current="page">{{ page }}</a></li>
+                  {% if page < nbPages %}
+                    <li><a class="pagination-link" href="?page={{ page + 1 }}">{{ page + 1 }}</a></li>
+                  {% endif %}
+                  {% if page < nbPages - 1 %}
+                    <li><span class="pagination-ellipsis">&hellip;</span></li>
+                    <li><a class="pagination-link" href="?page={{ nbPages }}">{{ nbPages }}</a></li>
+                  {% endif %}
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </section>
+    {% else %}
+      <section class="hero">
+        <div class="hero-body">
+          <div class="container">
+            <article class="container message is-info">
+              <div class="message-header">
+                <p>
+                    {% trans %}Informations{% endtrans %}
+                </p>
+              </div>
+              <div class="message-body">
+                {% trans %}tasks is empty{% endtrans %}
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

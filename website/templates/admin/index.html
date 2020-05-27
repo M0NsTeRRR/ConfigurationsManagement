@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="columns is-centered is-vcentered">
+  <div class="column is-half">
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container">
+          <div class="card">
+            <div class="card-content">
+              <div class="content">
+                <p class="title has-text-centered">
+                  {% trans %}Users{% endtrans %}
+                </p>
+                <div class="field">
+                  <div class="control has-text-centered">
+                    <a class="button is-info" href="{{ url_for('admin.register') }}">
+                      <span class="icon is-small">
+                        <i class="fas fa-plus"></i>
+                      </span>
+                      <span>{% trans %}Create new user{% endtrans %}</span>
+                    </a>
+                  </div>
+                </div>
+                <table class="table is-bordered is-hoverable is-fullwidth">
+                  <thead>
+                    <tr>
+                      <th class="has-text-centered">{% trans %}Login{% endtrans %}</th>
+                      <th class="has-text-centered">{% trans %}Action{% endtrans %}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for user in users %}
+                    <tr>
+                      <td class="has-text-centered">{{ user.login }}</td>
+                      <td class="has-text-centered">
+                        <a href="{{ url_for('admin.edit_password', login=user.login) }}" class="button is-warning">
+                          <span class="icon is-small">
+                            <i class="fas fa-edit"></i>
+                          </span>
+                          <span>{% trans %}Edit password{% endtrans %}</span>
+                        </a>
+                        <a href="{{ url_for('admin.remove', login=user.login) }}" class="button is-danger">
+                          <span class="icon is-small">
+                            <i class="fas fa-trash-alt"></i>
+                          </span>
+                          <span>{% trans %}Delete user{% endtrans %}</span>
+                        </a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,528 @@
+# French translations for PROJECT.
+# Copyright (C) 2020 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2020-05-18 01:52+0200\n"
+"PO-Revision-Date: 2020-05-18 02:26+0200\n"
+"Last-Translator: Ludovic Ortega <mastership@hotmail.fr>\n"
+"Language: fr\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+"X-Generator: Poedit 2.3.1\n"
+
+#: website/__init__.py:119
+msgid "ERROR: TIMEZONE is not filled properly"
+msgstr "ERREUR: TIMEZONE n'est pas remplis correctement"
+
+#: website/__init__.py:122
+msgid "ERROR: SECRET_KEY is not filled properly"
+msgstr "ERREUR: SECRET_KEY n'est pas remplis correctement"
+
+#: website/admin.py:82 website/auth.py:99
+msgid "Login is required."
+msgstr "Le nom d'utilisateur est obligatoire."
+
+#: website/admin.py:84 website/admin.py:115 website/auth.py:101
+msgid "Password is required."
+msgstr "Le mot de passe est obligatoire."
+
+#: website/admin.py:86 website/admin.py:117
+msgid "Password not confirmed."
+msgstr "Le mot de passe n'a pas été confirmé."
+
+#: website/admin.py:88
+msgid "User is already registered."
+msgstr "L'utilisateur est déjà enregistré."
+
+#: website/admin.py:92
+#, python-format
+msgid "Account %(login)s created."
+msgstr "Compte utilisateur %(login)s créé."
+
+#: website/admin.py:106 website/admin.py:134
+msgid "User doesn't exist."
+msgstr "L'utilisateur n'existe pas."
+
+#: website/admin.py:121
+#, python-format
+msgid "User %(login)s password changed."
+msgstr "Le mot de passe de %(login)s a été changé."
+
+#: website/admin.py:139
+#, python-format
+msgid "User %(login)s deleted."
+msgstr "L'utilisateur %(login)s a été supprimé."
+
+#: website/api.py:82 website/tasks.py:183
+msgid "ERROR: Unauthorized"
+msgstr "ERREUR: Non autorisé"
+
+#: website/api.py:96
+msgid "ERROR: Gitea Token not configured"
+msgstr "ERREUR: Token Gitea non configuré"
+
+#: website/api.py:100
+msgid "ERROR: Can't connect to Gitea server"
+msgstr "ERREUR: Connection échoué vers le serveurs Gitea"
+
+#: website/api.py:162 website/errors.py:58 website/errors.py:66
+#: website/tasks.py:185
+msgid "ERROR: Not found"
+msgstr "ERREUR: Non trouvée"
+
+#: website/api.py:224 website/tasks.py:198
+msgid "ERROR: Bad Request"
+msgstr "ERREUR: Mauvaise requête"
+
+#: website/auth.py:65
+msgid "Unauthorized: You must be authenticated to access this page."
+msgstr "Non autorisé: Vous devez être connecté pour accéder à cette page."
+
+#: website/auth.py:103
+msgid "Incorrect login/password."
+msgstr "Mauvais Nom d'utilisateur/Mot de passe."
+
+#: website/auth.py:109
+#, python-format
+msgid "Welcome %(login)s."
+msgstr "Bienvenue %(login)s."
+
+#: website/configuration_files.py:91
+msgid "Error cannot get configuration files from Gitea."
+msgstr "Erreur lors de la récupération des fichiers vers Gitea."
+
+#: website/configuration_files.py:102
+msgid "Cannot read this type of file."
+msgstr "Impossible de lire ce type de fichier."
+
+#: website/configuration_files.py:126 website/configuration_files.py:138
+#: website/configuration_files.py:159 website/configuration_files.py:192
+msgid "Error file does not exist."
+msgstr "Erreur le fichier n'existe pas."
+
+#: website/configuration_files.py:130
+msgid "File deleted."
+msgstr "Fichier supprimé."
+
+#: website/configuration_files.py:166 website/configuration_files.py:179
+msgid "No data to update."
+msgstr "Pas de donnée à mettre à jour."
+
+#: website/configuration_files.py:190
+msgid "File contents updated."
+msgstr "Contenu du fichier mis à jour."
+
+#: website/configuration_files.py:197
+msgid "Error file path is undefined."
+msgstr "Erreur le chemin du fichier n'est pas spécifié."
+
+#: website/csrf.py:61 website/csrf.py:62
+msgid "CSRF error."
+msgstr "Erreur CSRF."
+
+#: website/errors.py:59 website/errors.py:60
+msgid "Page not found."
+msgstr "Page non trouvée."
+
+#: website/settings.py:86
+msgid "Error something went wrong."
+msgstr "Erreur quelque chose s'est mal passé."
+
+#: website/settings.py:99
+msgid "Your account is already linked with Gitea."
+msgstr "Votre compte est déjà lié à Gitea."
+
+#: website/settings.py:101
+msgid "Token is required."
+msgstr "Le token est requis."
+
+#: website/settings.py:108
+msgid "Error account not linked."
+msgstr "Erreur votre compte n'a pas été lié."
+
+#: website/settings.py:112
+msgid "Your account is now linked with Gitea."
+msgstr "Votre compte est désormais lié à Gitea."
+
+#: website/settings.py:127
+msgid "Your account is not linked with Gitea."
+msgstr "Votre compte n'est pas lié à Gitea."
+
+#: website/settings.py:131
+msgid "Your account is no longer linked with Gitea."
+msgstr "Votre compte n'est désormais plus lié à Gitea."
+
+#: website/settings.py:148
+msgid "Gitea url is required."
+msgstr "L'url de Gitea est requis."
+
+#: website/settings.py:150
+msgid "Owner of the repository is required."
+msgstr "Le propriétaire du repository est requis."
+
+#: website/settings.py:152
+msgid "Name of the repository is required."
+msgstr "Le nom du repository est requis."
+
+#: website/settings.py:156
+msgid "Repository configuration saved."
+msgstr "Le configuration du repository est sauvegardé."
+
+#: website/settings.py:171
+msgid "New API key generated."
+msgstr "Nouvelle clé API généré."
+
+#: website/settings.py:181
+msgid "No API key to delete."
+msgstr "Pas de clé API à supprimer."
+
+#: website/settings.py:184
+msgid "API key deleted."
+msgstr "Clé API supprimé."
+
+#: website/tasks.py:87
+msgid "Hostname is required."
+msgstr "Le nom de la machine est requis."
+
+#: website/tasks.py:89
+msgid "Module is required."
+msgstr "Le module est requis."
+
+#: website/tasks.py:91
+msgid "Action is required."
+msgstr "L'action est requise."
+
+#: website/tasks.py:93
+msgid "Path is required."
+msgstr "Le chemin est requis."
+
+#: website/tasks.py:154
+msgid "Task doesn't exist."
+msgstr "La tâche n'existe pas."
+
+#: website/gitea/utils.py:60
+msgid "Your account is not linked with a gitea account."
+msgstr "Votre compte n'est pas lié à un compte Gitea."
+
+#: website/gitea/utils.py:65
+msgid "Error can't get configuration files from Gitea."
+msgstr "Erreur lors de la récupération des fichiers vers Gitea."
+
+#: website/rabbitmq/rabbitmq.py:79
+msgid "Error when creating task."
+msgstr "Erreur lors de la création de la tâche."
+
+#: website/templates/base.html:38
+msgid "API Documentation"
+msgstr "Documentation de l'API"
+
+#: website/templates/base.html:45
+msgid "Configuration files"
+msgstr "Fichiers de configuration"
+
+#: website/templates/base.html:51 website/templates/tasks/index.html:13
+msgid "Save/Restore"
+msgstr "Sauvegarde/Restauration"
+
+#: website/templates/base.html:57
+msgid "Tasks"
+msgstr "Tâches"
+
+#: website/templates/base.html:63
+msgid "Settings"
+msgstr "Réglages"
+
+#: website/templates/base.html:69
+msgid "Administration"
+msgstr "Administration"
+
+#: website/templates/base.html:77
+msgid "Logout"
+msgstr "Se déconnecter"
+
+#: website/templates/base.html:93
+msgid "Success"
+msgstr "Succès"
+
+#: website/templates/base.html:95 website/templates/tasks/task.html:17
+msgid "Failed"
+msgstr "Raté"
+
+#: website/templates/base.html:116
+msgid "is published under license"
+msgstr "est publié sous licence"
+
+#: website/templates/admin/edit_password.html:14
+msgid "Change password of user"
+msgstr "Changer le mot de passe de l'utilisateur"
+
+#: website/templates/admin/edit_password.html:17
+#: website/templates/admin/edit_password.html:19
+#: website/templates/admin/edit_password.html:28
+#: website/templates/admin/register.html:26
+#: website/templates/admin/register.html:28
+#: website/templates/admin/register.html:37
+#: website/templates/auth/login.html:26 website/templates/auth/login.html:28
+msgid "Password"
+msgstr "Mot de passe"
+
+#: website/templates/admin/edit_password.html:26
+#: website/templates/admin/register.html:35
+msgid "Confirm Password"
+msgstr "Confirmer le mot de passe"
+
+#: website/templates/admin/edit_password.html:40
+#: website/templates/admin/register.html:49
+#: website/templates/auth/login.html:40
+#: website/templates/configuration_files/index.html:48
+#: website/templates/configuration_files/index.html:84
+#: website/templates/settings/index.html:142
+#: website/templates/tasks/index.html:35
+msgid "Submit"
+msgstr "Envoyer"
+
+#: website/templates/admin/index.html:13
+msgid "Users"
+msgstr "Utilisateurs"
+
+#: website/templates/admin/index.html:21
+msgid "Create new user"
+msgstr "Créer un nouveau utilisateur"
+
+#: website/templates/admin/index.html:28
+#: website/templates/admin/register.html:17
+#: website/templates/admin/register.html:19
+#: website/templates/auth/login.html:17 website/templates/auth/login.html:19
+msgid "Login"
+msgstr "Nom d'utilisateur"
+
+#: website/templates/admin/index.html:29 website/templates/tasks/tasks.html:22
+msgid "Action"
+msgstr "Action"
+
+#: website/templates/admin/index.html:41
+msgid "Edit password"
+msgstr "Changer le mot de passe"
+
+#: website/templates/admin/index.html:47 website/templates/admin/remove.html:14
+msgid "Delete user"
+msgstr "Supprimer l'utilisateur"
+
+#: website/templates/admin/register.html:14
+msgid "Register"
+msgstr "Enregistrer"
+
+#: website/templates/admin/remove.html:22
+#: website/templates/configuration_files/confirm_save.html:23
+#: website/templates/configuration_files/remove.html:22
+msgid "Confirm"
+msgstr "Confirmer"
+
+#: website/templates/admin/remove.html:30
+#: website/templates/configuration_files/confirm_save.html:31
+#: website/templates/configuration_files/remove.html:30
+msgid "Cancel"
+msgstr "Annuler"
+
+#: website/templates/configuration_files/confirm_save.html:14
+msgid "Save file"
+msgstr "Sauvegarder un fichier"
+
+#: website/templates/configuration_files/index.html:121
+#: website/templates/configuration_files/remove.html:14
+msgid "Delete file"
+msgstr "Supprimer un fichier"
+
+#: website/templates/settings/index.html:19
+msgid "Connect your account to Gitea"
+msgstr "Connecter votre compte à Gitea"
+
+#: website/templates/settings/index.html:23
+#: website/templates/settings/index.html:25
+msgid "Token"
+msgstr "Jeton"
+
+#: website/templates/settings/index.html:37
+msgid "Connect"
+msgstr "Se connecter"
+
+#: website/templates/settings/index.html:54
+msgid "Gitea Admin"
+msgstr "Admin Gitea"
+
+#: website/templates/settings/index.html:56
+msgid "Yes"
+msgstr "Oui"
+
+#: website/templates/settings/index.html:58
+msgid "No"
+msgstr "Non"
+
+#: website/templates/settings/index.html:71
+#: website/templates/settings/index.html:92
+msgid "Disconnect"
+msgstr "Déconnecter"
+
+#: website/templates/settings/index.html:106
+msgid "Gitea configuration"
+msgstr "Configuration de Gitea"
+
+#: website/templates/settings/index.html:110
+#: website/templates/settings/index.html:112
+msgid "Gitea URL"
+msgstr "URL Gitea"
+
+#: website/templates/settings/index.html:119
+#: website/templates/settings/index.html:121
+msgid "Owner of the repository"
+msgstr "Propriétaire du repository"
+
+#: website/templates/settings/index.html:128
+#: website/templates/settings/index.html:130
+msgid "Name of the repository"
+msgstr "Nom du repository"
+
+#: website/templates/settings/index.html:161
+msgid "API key"
+msgstr "clé API"
+
+#: website/templates/settings/index.html:170
+msgid "Generate new API key"
+msgstr "Générer une nouvelle clé API"
+
+#: website/templates/settings/index.html:191
+msgid "Delete API key"
+msgstr "Supprimer la clé API"
+
+#: website/templates/tasks/index.html:18
+msgid "Hostname / IP address"
+msgstr "Nom de la machine / adresse IP"
+
+#: website/templates/tasks/index.html:21 website/templates/tasks/task.html:40
+#: website/templates/tasks/tasks.html:21
+msgid "Module"
+msgstr "Module"
+
+#: website/templates/tasks/index.html:26
+msgid "Save"
+msgstr "Sauvegarder"
+
+#: website/templates/tasks/index.html:27
+msgid "Restore"
+msgstr "Restaurer"
+
+#: website/templates/tasks/index.html:32
+msgid "Path of file"
+msgstr "Chemin du fichier"
+
+#: website/templates/tasks/task.html:21
+#, python-format
+msgid "%(message)s"
+msgstr ""
+
+#: website/templates/tasks/task.html:34
+msgid "Task ID"
+msgstr "ID de la tâche"
+
+#: website/templates/tasks/task.html:34
+#, python-format
+msgid "%(action)s"
+msgstr ""
+
+#: website/templates/tasks/task.html:37 website/templates/tasks/tasks.html:20
+msgid "Hostname"
+msgstr "Nom de la machine"
+
+#: website/templates/tasks/task.html:43
+msgid "Path"
+msgstr "Chemin"
+
+#: website/templates/tasks/task.html:53
+msgid "Created"
+msgstr "Créé"
+
+#: website/templates/tasks/task.html:54
+msgid "Task created at"
+msgstr "Tâche créée à"
+
+#: website/templates/tasks/task.html:54
+msgid "and queued."
+msgstr "et mis en file d'attente."
+
+#: website/templates/tasks/task.html:64
+msgid "Popped"
+msgstr ""
+
+#: website/templates/tasks/task.html:65
+msgid "Task taken by a worker."
+msgstr "Tâche prise par un worker."
+
+#: website/templates/tasks/task.html:75
+msgid "Processing"
+msgstr "En traitement"
+
+#: website/templates/tasks/task.html:76
+msgid "Task is processing."
+msgstr "La tâche est en cours de traitement."
+
+#: website/templates/tasks/task.html:86
+msgid "Finished"
+msgstr "Terminé"
+
+#: website/templates/tasks/task.html:87
+msgid "Task finished at"
+msgstr "Tâche terminé à"
+
+#: website/templates/tasks/task.html:87 website/templates/tasks/tasks.html:59
+msgid "Unknown"
+msgstr "Inconnu"
+
+#: website/templates/tasks/tasks.html:14
+msgid "tasks"
+msgstr "tâches"
+
+#: website/templates/tasks/tasks.html:19
+msgid "ID"
+msgstr "ID"
+
+#: website/templates/tasks/tasks.html:23
+msgid "Status"
+msgstr "Status"
+
+#: website/templates/tasks/tasks.html:24
+msgid "Start date"
+msgstr "Date de début"
+
+#: website/templates/tasks/tasks.html:25
+msgid "End date"
+msgstr "Date de fin"
+
+#: website/templates/tasks/tasks.html:26
+msgid "View"
+msgstr "Voir"
+
+#: website/templates/tasks/tasks.html:55
+#, python-format
+msgid "%(status_name)s"
+msgstr ""
+
+#: website/templates/tasks/tasks.html:65
+msgid "Go"
+msgstr "Go"
+
+#: website/templates/tasks/tasks.html:104
+msgid "Informations"
+msgstr "Informations"
+
+#: website/templates/tasks/tasks.html:108
+msgid "tasks is empty"
+msgstr "les tâches sont vides"

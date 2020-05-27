@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block headers %}
+  {{ super() }}
+  <script defer src="{{ url_for('static', filename='js/axios.min.js') }}"></script>
+  <script defer src="{{ url_for('static', filename='js/task.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="columns is-centered is-vcentered">
+  <div class="column is-half">
+    <section class="hero {% if not task.error or not task.message is not none %}is-hidden{% endif %}">
+      <div class="hero-body">
+        <div class="container">
+          <article class="container message is-danger">
+            <div class="message-header">
+              <p>
+                  {% trans %}Failed{% endtrans %} !
+              </p>
+            </div>
+            <div class="message-body">
+              {% trans message=task.message %}{{ message }}{% endtrans %}
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container">
+          <div class="card">
+            <div class="card-content">
+              <div class="content">
+                <p class="title has-text-centered">
+                  {% trans %}Task ID{% endtrans %} : {{ task.id }} ({% trans action=task.action %}{{ action }}{% endtrans %})
+                </p>
+                <p class="subtitle has-text-centered">
+                  {% trans %}Hostname{% endtrans %} : {{ task.hostname }}
+                </p>
+                <p class="subtitle has-text-centered">
+                  {% trans %}Module{% endtrans %} : {{ task.module }}
+                </p>
+                <p class="subtitle has-text-centered">
+                  {% trans %}Path{% endtrans %} : {{ task.path }}
+                </p>
+                <div class="steps">
+                  <div class="step-item  {% if task.state == 0 and task.error == 0 %}is-info is-active{% elif task.state == 0 and task.error == 1 %}is-danger is-active{% else %}is-completed is-success{% endif %}">
+                    <div class="step-marker">
+                      <span class="icon">
+                        <i class="{% if task.state == 0 and task.error == 1 %}fa fa-times{% elif task.state == 0 and task.error == 0 %}fa fa-play{% else %}fa fa-check{% endif %}"></i>
+                      </span>
+                    </div>
+                    <div class="step-details">
+                      <p class="step-title">{% trans %}Created{% endtrans %}</p>
+                      <p>{% trans %}Task created at{% endtrans %} <span class="has-text-weight-bold">{{ task.start_date|datetime }}</span> {% trans %}and queued.{% endtrans %}</p>
+                    </div>
+                  </div>
+                  <div class="step-item {% if task.state == 1 %}is-info is-active{% elif task.state > 1 %}is-completed is-success{% endif %}">
+                    <div class="step-marker">
+                      <span class="icon">
+                        <i class="{% if task.state < 2 %}fa fa-clock{% else %}fa fa-check{% endif %}"></i>
+                      </span>
+                    </div>
+                    <div class="step-details">
+                      <p class="step-title">{% trans %}Popped{% endtrans %}</p>
+                      <p>{% trans %}Task taken by a worker.{% endtrans %}</p>
+                    </div>
+                  </div>
+                  <div class="step-item {% if task.state == 2 %}is-info is-active{% elif task.state == 3 and task.error == 1 %}is-danger is-completed{% elif task.state > 2 %}is-completed is-success{% endif %}">
+                    <div class="step-marker">
+                      <span class="icon">
+                        <i class="{% if task.state < 3 %}fa fa-play{% elif task.state == 3 and task.error == 1 %}fa fa-times{% else %}fa fa-check{% endif %}"></i>
+                      </span>
+                    </div>
+                    <div class="step-details">
+                      <p class="step-title">{% trans %}Processing{% endtrans %}</p>
+                      <p>{% trans %}Task is processing.{% endtrans %}</p>
+                    </div>
+                  </div>
+                  <div class="step-item {% if task.error == 1 %}{% elif task.state == 3 %}is-info is-active{% elif task.state > 3%}is-completed is-success{% endif %}">
+                    <div class="step-marker">
+                      <span class="icon">
+                        <i class="{% if task.state < 4 %}fa fa-flag{% else %}fa fa-check{% endif %}"></i>
+                      </span>
+                    </div>
+                    <div class="step-details">
+                      <p class="step-title">{% trans %}Finished{% endtrans %}</p>
+                      <p>{% trans %}Task finished at{% endtrans %} <span class="has-text-weight-bold">{% if task.end_date %}{{ task.end_date|datetime }}{% else %}{% trans %}Unknown{% endtrans %}{% endif %}</span>.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+<script type=text/javascript>
+    const task_json = ({{ task_json|tojson|safe }});
+</script>
+{% endblock %}

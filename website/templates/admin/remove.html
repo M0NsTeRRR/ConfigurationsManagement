@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="post">
+  <div class="columns is-centered is-vcentered">
+    <div class="column is-half">
+      <section class="hero">
+        <div class="hero-body">
+          <div class="container">
+            <div class="card">
+              <div class="card-content">
+                <div class="content">
+                  <p class="title has-text-centered">
+                    {% trans %}Delete user{% endtrans %} : <span class="is-italic">{{ user.login }}</span>
+                  </p>
+                  <div class="field is-grouped is-grouped-centered">
+                    <div class="control has-text-centered">
+                      <button class="button is-success">
+                        <span class="icon is-small">
+                          <i class="fas fa-check"></i>
+                        </span>
+                        <span>{% trans %}Confirm{% endtrans %}</span>
+                      </button>
+                    </div>
+                    <div class="control has-text-centered">
+                      <a href="{{ url_for('admin.index') }}" class="button is-danger">
+                        <span class="icon is-small">
+                          <i class="fas fa-times"></i>
+                        </span>
+                        <span>{% trans %}Cancel{% endtrans %}</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+</form>
+{% endblock %}

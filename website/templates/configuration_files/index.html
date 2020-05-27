@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% block headers %}
+  {{ super() }}
+  <script defer src="{{ url_for('static', filename='js/copy_function.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+  {% if not error %}
+    <div class="columns is-centered is-vcentered">
+      <div class="column is-half">
+        <section class="hero">
+          <div class="hero-body">
+            <div class="container">
+              <div class="field is-grouped">
+                <nav class="breadcrumb" aria-label="breadcrumbs">
+                  <ul>
+                    <li><a href="{{ url_for('configuration_files.index') }}">{{ gitea.repository }}</a></li>
+                    {% if request.args.get('path') %}
+                      {% if folder %}
+                        {% set nodes = repo_contents[0].path.split('/')[:-1] %}
+                      {% else %}
+                        {% set nodes = repo_contents.path.split('/') %}
+                      {% endif %}
+                      {% for i in range(0, nodes|length) %}
+                        <li><a href="{{ url_for('configuration_files.index', path=nodes[:i + 1]|join('/')) }}">{{ nodes[i] }}</a></li>
+                      {% endfor %}
+                    {% endif %}
+                  </ul>
+                </nav>
+              </div>
+              {% if folder %}
+                <nav class="panel">
+                  <div class="panel-block">
+                    <form action="{{ url_for('configuration_files.index') }}" method="get">
+                      <div class="container">
+                        <div class="field has-addons has-addons-right">
+                          <div class="control">
+                            <div class="select">
+                              <select name="ref">
+                                <option {% if ref == 'master' %}selected="selected"{% endif %} value="master">master</option>
+                                {% for commit in commits %}
+                                  <option {% if ref == commit.sha %}selected="selected"{% endif %} value="{{ commit.sha }}">{{ commit.commit.message }}</option>
+                                {% endfor %}
+                              </select>
+                            </div>
+                          </div>
+                          <div class="control">
+                            <button type="submit" class="button is-info">{% trans %}Submit{% endtrans %}</button>
+                          </div>
+                        </div>
+                      </div>
+                      <input type="hidden" name="path" value="{{ request.args.get('path') if request.args.get('path') else '' }}"/>
+                    </form>
+                  </div>
+                  {% for element in repo_contents %}
+                    <a href="{{ url_for('configuration_files.index', path=element.path, ref=ref) }}" class="panel-block is-active">
+                      <span class="panel-icon">
+                        {% if element.type == 'file' %}
+                          <i class="fas fa-file-code" aria-hidden="true"></i>
+                        {% elif element.type == 'dir' %}
+                          <i class="fas fa-folder" aria-hidden="true"></i>
+                        {% endif %}
+                      </span>
+                      {{ element.name }}
+                    </a>
+                  {% endfor %}
+                </nav>
+              {% else %}
+                <form action="{{ url_for('configuration_files.index') }}" method="get">
+                  <div class="columns is-desktop">
+                    <div class="column">
+                      <div class="field has-addons has-addons-left">
+                        <div class="control">
+                          <div class="select">
+                            <select name="ref">
+                              <option {% if ref == 'master' %}selected="selected"{% endif %} value="master">master</option>
+                              {% for commit in commits %}
+                                <option {% if ref == commit.sha %}selected="selected"{% endif %} value="{{ commit.sha }}">{{ commit.commit.message }}</option>
+                              {% endfor %}
+                            </select>
+                          </div>
+                        </div>
+                        <div class="control">
+                          <button type="submit" class="button is-info">{% trans %}Submit{% endtrans %}</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="column">
+                      <div class="field is-grouped is-grouped-right">
+                        <div class="control">
+                          <button id="copy_path" type="button" class="button is-link">
+                              <span class="icon is-small">
+                                  <i class="fas fa-copy"></i>
+                              </span>
+                              <span>Copy path</span>
+                          </button>
+                        </div>
+                        <div class="control">
+                          <button id="copy_data" type="button" class="button is-link">
+                              <span class="icon is-small">
+                                  <i class="fas fa-copy"></i>
+                              </span>
+                              <span>Copy data</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <input type="hidden" name="path" value="{{ request.args.get('path') if request.args.get('path') else '' }}"/>
+                </form>
+                <br>
+                <form action="{{ url_for('configuration_files.confirm_save') }}" method="post">
+                  <textarea id="data" name="data" class="textarea" rows="10">{{ repo_contents.content }}</textarea>
+                  <br>
+                  <div class="field is-grouped is-grouped-centered">
+                    <div class="control has-text-centered">
+                      <a href="{{ url_for('configuration_files.remove', path=nodes|join('/')) }}" class="button is-danger">
+                        <span class="icon is-small">
+                          <i class="fas fa-times"></i>
+                        </span>
+                        <span>{% trans %}Delete file{% endtrans %}</span>
+                      </a>
+                    </div>
+                    <div class="control">
+                      <button type="submit" class="button is-success">
+                          <span class="icon is-small">
+                              <i class="fas fa-save"></i>
+                          </span>
+                          <span>Save</span>
+                      </button>
+                    </div>
+                  </div>
+                  <input type="hidden" name="path" value="{{ request.args.get('path') if request.args.get('path') else '' }}"/>
+                  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                </form>
+              {% endif %}
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}

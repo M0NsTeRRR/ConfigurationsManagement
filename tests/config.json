@@ -1,0 +1,15 @@
+{
+  "USER": {
+    "GITEA_TEST_TOKEN": ""
+  },
+  "GITEA": {
+    "TEST_URL": "https://git.adminafk.fr",
+    "TEST_OWNER": "-MoNsTeRRR",
+    "TEST_REPOSITORY": "gittest",
+    "TEST": {
+      "REF": "708b7aacaa23cfc77c6d5e1f38f5f3ca266b55db",
+      "PATH_FOLDER": "R1",
+      "PATH_FILE": "R1/v1.12.3"
+    }
+  }
+}
