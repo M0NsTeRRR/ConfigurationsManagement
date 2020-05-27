@@ -42,7 +42,6 @@ from json.decoder import JSONDecodeError
 from flask import (
     Blueprint,
     request,
-    url_for,
     g,
     session
 )
