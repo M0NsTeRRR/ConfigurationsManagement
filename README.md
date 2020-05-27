@@ -11,6 +11,9 @@ in a Gitea server. Backup/Restore script are Ansible Playbooks.
 
 [ConfigurationsManagement-worker](https://github.com/M0NsTeRRR/ConfigurationsManagement-worker)
 
+#### Architecture
+![diagram.png](diagram.png)
+
 # Requirements
 - Python > 3.6
 - Pip
