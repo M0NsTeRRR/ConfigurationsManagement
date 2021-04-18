@@ -1,8 +1,6 @@
 ![Test](https://github.com/M0NsTeRRR/ConfigurationsManagement/workflows/Test/badge.svg?event=push)
 [![codecov](https://codecov.io/gh/M0NsTeRRR/ConfigurationsManagement/branch/master/graph/badge.svg?token=KaNnAIAj6P)](https://codecov.io/gh/M0NsTeRRR/ConfigurationsManagement)
 ![Python version](https://img.shields.io/badge/python-3.6%20%7C%203.7%20%7C%203.8-blue)
-[![Docker Automated build](https://img.shields.io/docker/cloud/automated/monsterrr/configurationsmanagement?style=flat-square)](https://hub.docker.com/r/monsterrr/configurationsmanagement)
-[![Docker Build Status](https://img.shields.io/docker/cloud/build/monsterrr/configurationsmanagement?style=flat-square)](https://hub.docker.com/r/monsterrr/configurationsmanagement)
 [![Licence](https://img.shields.io/badge/license-CeCILL%20V2.1-green)](https://github.com/M0NsTeRRR/ConfigurationsManagement/blob/master/LICENSE)
 
 ConfigurationsManagement is a website that helps you to backup/restore devices/services. An API is available to automate
@@ -128,4 +126,4 @@ Copyright © Ludovic Ortega, 2019
 
 Contributor(s):
 
--Ortega Ludovic - mastership@hotmail.fr
+-Ortega Ludovic - ludovic.ortega@adminafk.fr
